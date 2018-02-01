@@ -1,17 +1,28 @@
 <?php
+/**
+ * Plugin Settings Page
+ *
+ * @version 0.02
+ */
 
-// Add menu page
+/**
+ * Add Menu Page
+ */
 function rrt_stripe_add_page() {
 	add_options_page('Stripe Donations', 'Stripe Donations', 'manage_options', 'rrt_stripe', 'rrt_stripe_do_page');
 }
 add_action('admin_menu', 'rrt_stripe_add_page');
 
-// Draw the menu page
+/**
+ * Draw Menu Page
+ */
 function rrt_stripe_do_page() {
 
+	/* Stripe Options */
 	global $stripe_options;
 	$woo_managed = false;
 
+	/* @var $currs {currencies list} */
 	$currs = array(
 		array('aed', 'United Arab Emirates dirham, AED'),
 		array('afn', 'Afghan afghani, AFN'),
@@ -176,7 +187,9 @@ function rrt_stripe_do_page() {
 		array('zmw', 'Zambian kwacha, ZMW'),
 	);
 
-	// Check if WooCommerce exists
+	/**
+	 * Check For WooComm
+	 */
 	if ( class_exists( 'WooCommerce' ) && class_exists( 'WC_Stripe' ) ) :
 
 		// Get the WooCommerce Stripe settings
@@ -215,17 +228,21 @@ function rrt_stripe_do_page() {
 
 	endif;
 
-	if ($woo_managed) :
+	/**
+	 * WooCommerce Managed Keys
+	 * - Import/display WooCom Keys
+	 */
+	if ($woo_managed) {
 
 		echo '<div class="wrap">';
 			echo '<h2>' . __('Stripe Donations', 'rrt_stripe') . '</h2>';
 			echo '<p class="description">WooCommerce is installed, the information below is shown for reference only.</p>';
-			echo '<p class="description">Manage your Stripe keys and test mode settings <a href="' . admin_url('admin.php?page=wc-settings&tab=checkout&section=stripe' ) . '">here</a> and manage your currency <a href="' . admin_url('admin.php?page=wc-settings&tab=general' ) . '">here</a>.</p>';
+			echo '<p class="description">Manage your Stripe keys and test mode settings <a href="' . admin_url('admin.php?page=wc-settings&tab=checkout&section=stripe') . '">here</a> and manage your currency <a href="' . admin_url('admin.php?page=wc-settings&tab=general') . '">here</a>.</p>';
 			echo '<table class="form-table">';
 				echo '<tr>';
 					echo '<th>' . __('Test Mode') . '</th>';
 					echo '<td><label><input disabled type="checkbox" value="1" name="rrt_stripe_settings[test_mode]" id="test_mode"';
-					if ( isset( $stripe_options['test_mode'] ) ) checked( $stripe_options['test_mode'], 1 );
+					if (isset($stripe_options['test_mode'])) checked($stripe_options['test_mode'], 1);
 					echo '> ' . __('Check this to use the plugin in test mode.', 'rrt_stripe') . '</label></td>';
 				echo '</tr>';
 			echo '</table>';
@@ -236,8 +253,8 @@ function rrt_stripe_do_page() {
 					echo '<th><label for="currency">' . __('Currency', 'rrt_stripe') . '</label></th>';
 					echo '<td>';
 						echo '<select disabled name="currency" id="currency">';
-						foreach ( $currs as $curr ) :
-							if ( $stripe_options['currency'] === $curr[0] ) {
+						foreach ($currs as $curr) :
+							if ($stripe_options['currency'] === $curr[0]) {
 								echo '<option selected value="' . $curr[0] . '">' . $curr[1] . '</option>';
 							} else {
 								echo '<option value="' . $curr[0] . '">' . $curr[1] . '</option>';
@@ -249,8 +266,8 @@ function rrt_stripe_do_page() {
 			echo '</table>';
 			echo '<hr>';
 
-	        echo '<h3>' . __('API Keys', 'rrt_stripe') . '</h3>';
-	        echo '<table class="form-table">';
+			echo '<h3>' . __('API Keys', 'rrt_stripe') . '</h3>';
+			echo '<table class="form-table">';
 				echo '<tr>';
 					echo '<th><label for="test_publish">' . __('Test Publishable', 'rrt_stripe') . '</label></th>';
 					echo '<td>';
@@ -281,19 +298,23 @@ function rrt_stripe_do_page() {
 				echo '</tr>';
 			echo '</table>';
 		echo '</div>';
+	}
 
-	else :
-
+	/**
+	 * Plugin Managed Keys
+	 * - Set/Display keys from plugin
+	 */
+	else {
 		echo '<div class="wrap">';
 			echo '<h2>' . __('Stripe Donations', 'rrt_stripe') . '</h2>';
 
-	        settings_fields('rrt_stripe_options');
+			settings_fields('rrt_stripe_options');
 
-	        echo '<table class="form-table">';
+			echo '<table class="form-table">';
 				echo '<tr>';
 					echo '<th>' . __('Test Mode') . '</th>';
 					echo '<td><label><input type="checkbox" value="1" name="rrt_stripe_settings[test_mode]" id="test_mode"';
-					if ( isset( $stripe_options['test_mode'] ) ) checked( $stripe_options['test_mode'], 1 );
+					if (isset($stripe_options['test_mode'])) checked($stripe_options['test_mode'], 1);
 					echo '> ' . __('Check this to use the plugin in test mode.', 'rrt_stripe') . '</label></td>';
 				echo '</tr>';
 			echo '</table>';
@@ -305,8 +326,8 @@ function rrt_stripe_do_page() {
 					echo '<td>';
 						echo '<select name="rrt_stripe_settings[currency]" id="currency">';
 
-						foreach ( $currs as $curr ) :
-							if ( $stripe_options['currency'] === $curr[0] ) {
+						foreach ($currs as $curr) :
+							if ($stripe_options['currency'] === $curr[0]) {
 								echo '<option selected value="' . $curr[0] . '">' . $curr[1] . '</option>';
 							} else {
 								echo '<option value="' . $curr[0] . '">' . $curr[1] . '</option>';
@@ -320,8 +341,8 @@ function rrt_stripe_do_page() {
 			echo '</table>';
 			echo '<hr>';
 
-	        echo '<h3>' . __('API Keys', 'rrt_stripe') . '</h3>';
-	        echo '<table class="form-table">';
+			echo '<h3>' . __('API Keys', 'rrt_stripe') . '</h3>';
+			echo '<table class="form-table">';
 				echo '<tr>';
 					echo '<th><label for="test_publish">' . __('Test Publishable', 'rrt_stripe') . '</label></th>';
 					echo '<td>';
@@ -359,8 +380,13 @@ function rrt_stripe_do_page() {
 
 		echo '</div>';
 
-	endif;
+	};
 
+
+	/**
+	 * Donation Amounts Table
+	 * - Fields for donations amounts to display in table
+	 */
 }
 
 // Init plugin options
