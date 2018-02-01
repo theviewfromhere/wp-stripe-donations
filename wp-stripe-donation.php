@@ -1,16 +1,16 @@
 <?php
 /**
  * Plugin Name: WP Stripe Donations
- * Plugin URI: https://ldps.com/
+ * Plugin URI: https://theviewfromhere.com.au/
  * Description: A plugin to manage the Stripe library, form processing and API Keys
  * Version: 0.2
- * Author: LeviDPS
- * Author URI: https://ldps/
+ * Author: THE VIEW FROM HERE
+ * Author URI: https://theviewfromhere.com.au/
  * License: GPL2
  */
 
 /*
-	Copyright 2017 The View From Here (email : levidps@gmail.com)
+	Copyright 2017 The View From Here (email : digital@theviewfromhere.com.au)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
