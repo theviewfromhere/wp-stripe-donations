@@ -374,10 +374,6 @@ function tvfh_stripe_do_page() {
 			echo '</table>';
 			echo '<hr>';
 
-			echo '<p class="submit"><input type="submit" class="button-primary" value="' . __('Save Changes') . '"></p>';
-
-			echo '</form>';
-
 		echo '</div>';
 
 	};
@@ -387,10 +383,9 @@ function tvfh_stripe_do_page() {
 	 * Donation Amounts Table
 	 * - Fields for donations amounts to display in table
 	 */
-
 	echo '<div class="wrap">';
 		echo '<h2>' . __('Donation Amounts', 'tvfh_stripe') . '</h2>';
-		echo '<p class="description">Donation Amounts.</p>';
+		echo '<p class="description">Amounts visible on the donations UI, number 6 is enter your own amount.</p>';
 		echo '<table class="form-table">';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount One', 'tvfh_stripe') . '</label></th>';
@@ -423,6 +418,10 @@ function tvfh_stripe_do_page() {
 				echo '</td>';
 			echo '</tr>';
 		echo '</table>';
+
+		echo '<p class="submit"><input type="submit" class="button-primary" value="' . __('Save Changes') . '"></p>';
+
+		echo '</form>';
 
 	echo '</div>';
 
