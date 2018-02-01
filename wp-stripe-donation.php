@@ -35,7 +35,8 @@ if(!defined('STRIPE_BASE_DIR')) {
 	define('STRIPE_BASE_DIR', dirname(__FILE__));
 }
 
-$stripe_options = get_option('rrt_stripe_settings');
+$stripe_options = get_option('tvfh_stripe_settings');
+$donation_settings = get_option('donation_settings');
 
 if(is_admin()) {
 	// load admin includes

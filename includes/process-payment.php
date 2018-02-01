@@ -1,6 +1,6 @@
 <?php
 
-function rrt_stripe_process_payment() {
+function tvfh_stripe_process_payment() {
 
 	global $stripe_options;
 
@@ -75,4 +75,4 @@ function rrt_stripe_process_payment() {
 	}
 
 }
-add_action('init', 'rrt_stripe_process_payment');
+add_action('init', 'tvfh_stripe_process_payment');

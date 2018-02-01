@@ -1,6 +1,6 @@
 <?php
 
-function rrt_load_stripe_scripts() {
+function tvfh_load_stripe_scripts() {
 
 	global $stripe_options;
 
@@ -25,4 +25,4 @@ function rrt_load_stripe_scripts() {
 		)
 	);
 }
-add_action('wp_enqueue_scripts', 'rrt_load_stripe_scripts');
+add_action('wp_enqueue_scripts', 'tvfh_load_stripe_scripts');

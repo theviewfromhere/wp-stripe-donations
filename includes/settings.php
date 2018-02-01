@@ -8,15 +8,15 @@
 /**
  * Add Menu Page
  */
-function rrt_stripe_add_page() {
-	add_options_page('Stripe Donations', 'Stripe Donations', 'manage_options', 'rrt_stripe', 'rrt_stripe_do_page');
+function tvfh_stripe_add_page() {
+	add_options_page('Stripe Donations', 'Stripe Donations', 'manage_options', 'tvfh_stripe', 'tvfh_stripe_do_page');
 }
-add_action('admin_menu', 'rrt_stripe_add_page');
+add_action('admin_menu', 'tvfh_stripe_add_page');
 
 /**
  * Draw Menu Page
  */
-function rrt_stripe_do_page() {
+function tvfh_stripe_do_page() {
 
 	/* Stripe Options */
 	global $stripe_options;
@@ -222,7 +222,7 @@ function rrt_stripe_do_page() {
 				$stripe_options['live_secret_key'] = $woo_stripe_options['secret_key'];
 			}
 
-			update_option('rrt_stripe_settings', $stripe_options, false);
+			update_option('tvfh_stripe_settings', $stripe_options, false);
 
 		endif;
 
@@ -235,22 +235,22 @@ function rrt_stripe_do_page() {
 	if ($woo_managed) {
 
 		echo '<div class="wrap">';
-			echo '<h2>' . __('Stripe Donations', 'rrt_stripe') . '</h2>';
+			echo '<h2>' . __('Stripe Donations', 'tvfh_stripe') . '</h2>';
 			echo '<p class="description">WooCommerce is installed, the information below is shown for reference only.</p>';
 			echo '<p class="description">Manage your Stripe keys and test mode settings <a href="' . admin_url('admin.php?page=wc-settings&tab=checkout&section=stripe') . '">here</a> and manage your currency <a href="' . admin_url('admin.php?page=wc-settings&tab=general') . '">here</a>.</p>';
 			echo '<table class="form-table">';
 				echo '<tr>';
 					echo '<th>' . __('Test Mode') . '</th>';
-					echo '<td><label><input disabled type="checkbox" value="1" name="rrt_stripe_settings[test_mode]" id="test_mode"';
+					echo '<td><label><input disabled type="checkbox" value="1" name="tvfh_stripe_settings[test_mode]" id="test_mode"';
 					if (isset($stripe_options['test_mode'])) checked($stripe_options['test_mode'], 1);
-					echo '> ' . __('Check this to use the plugin in test mode.', 'rrt_stripe') . '</label></td>';
+					echo '> ' . __('Check this to use the plugin in test mode.', 'tvfh_stripe') . '</label></td>';
 				echo '</tr>';
 			echo '</table>';
 			echo '<hr>';
 
 			echo '<table class="form-table">';
 				echo '<tr>';
-					echo '<th><label for="currency">' . __('Currency', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="currency">' . __('Currency', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
 						echo '<select disabled name="currency" id="currency">';
 						foreach ($currs as $curr) :
@@ -266,34 +266,34 @@ function rrt_stripe_do_page() {
 			echo '</table>';
 			echo '<hr>';
 
-			echo '<h3>' . __('API Keys', 'rrt_stripe') . '</h3>';
+			echo '<h3>' . __('API Keys', 'tvfh_stripe') . '</h3>';
 			echo '<table class="form-table">';
 				echo '<tr>';
-					echo '<th><label for="test_publish">' . __('Test Publishable', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="test_publish">' . __('Test Publishable', 'tvfh__stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input readonly type="text" class="regular-text code" name="rrt_stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
-						echo '<p class="description">' . __('Paste your test publishable key.', 'rrt_stripe') . '</p>';
+						echo '<input readonly type="text" class="regular-text code" name="tvfh_stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
+						echo '<p class="description">' . __('Paste your test publishable key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="test_secret">' . __('Test Secret', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="test_secret">' . __('Test Secret', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input readonly type="text" class="regular-text code" name="rrt_stripe_settings[test_secret_key]" id="test_secret" value="' . $stripe_options['test_secret_key'] . '">';
-						echo '<p class="description">' . __('Paste your test secret key.', 'rrt_stripe') . '</p>';
+						echo '<input readonly type="text" class="regular-text code" name="tvfh_stripe_settings[test_secret_key]" id="test_secret" value="' . $stripe_options['test_secret_key'] . '">';
+						echo '<p class="description">' . __('Paste your test secret key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="live_publish">' . __('Live Publishable', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="live_publish">' . __('Live Publishable', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input readonly type="text" class="regular-text code" name="rrt_stripe_settings[live_publishable_key]" id="live_publish" value="' . $stripe_options['live_publishable_key'] . '">';
-						echo '<p class="description">' . __('Paste your live publishable key.', 'rrt_stripe') . '</p>';
+						echo '<input readonly type="text" class="regular-text code" name="tvfh_stripe_settings[live_publishable_key]" id="live_publish" value="' . $stripe_options['live_publishable_key'] . '">';
+						echo '<p class="description">' . __('Paste your live publishable key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="live_secret">' . __('Live Secret', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="live_secret">' . __('Live Secret', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input readonly type="text" class="regular-text code" name="rrt_stripe_settings[live_secret_key]" id="live_secret" value="' . $stripe_options['live_secret_key'] . '">';
-						echo '<p class="description">' . __('Paste your live secret key.', 'rrt_stripe') . '</p>';
+						echo '<input readonly type="text" class="regular-text code" name="tvfh_stripe_settings[live_secret_key]" id="live_secret" value="' . $stripe_options['live_secret_key'] . '">';
+						echo '<p class="description">' . __('Paste your live secret key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 			echo '</table>';
@@ -306,25 +306,25 @@ function rrt_stripe_do_page() {
 	 */
 	else {
 		echo '<div class="wrap">';
-			echo '<h2>' . __('Stripe Donations', 'rrt_stripe') . '</h2>';
+			echo '<h2>' . __('Stripe Donations', 'tvfh_stripe') . '</h2>';
 
-			settings_fields('rrt_stripe_options');
+			settings_fields('tvfh_stripe_options');
 
 			echo '<table class="form-table">';
 				echo '<tr>';
 					echo '<th>' . __('Test Mode') . '</th>';
-					echo '<td><label><input type="checkbox" value="1" name="rrt_stripe_settings[test_mode]" id="test_mode"';
+					echo '<td><label><input type="checkbox" value="1" name="tvfh_stripe_settings[test_mode]" id="test_mode"';
 					if (isset($stripe_options['test_mode'])) checked($stripe_options['test_mode'], 1);
-					echo '> ' . __('Check this to use the plugin in test mode.', 'rrt_stripe') . '</label></td>';
+					echo '> ' . __('Check this to use the plugin in test mode.', 'tvfh_stripe') . '</label></td>';
 				echo '</tr>';
 			echo '</table>';
 			echo '<hr>';
 
 			echo '<table class="form-table">';
 				echo '<tr>';
-					echo '<th><label for="currency">' . __('Currency', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="currency">' . __('Currency', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<select name="rrt_stripe_settings[currency]" id="currency">';
+						echo '<select name=tvfh__stripe_settings[currency]" id="currency">';
 
 						foreach ($currs as $curr) :
 							if ($stripe_options['currency'] === $curr[0]) {
@@ -341,34 +341,34 @@ function rrt_stripe_do_page() {
 			echo '</table>';
 			echo '<hr>';
 
-			echo '<h3>' . __('API Keys', 'rrt_stripe') . '</h3>';
+			echo '<h3>' . __('API Keys', 'tvfh__stripe') . '</h3>';
 			echo '<table class="form-table">';
 				echo '<tr>';
-					echo '<th><label for="test_publish">' . __('Test Publishable', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="test_publish">' . __('Test Publishable', 'tvfh__stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input type="text" class="regular-text code" name="rrt_stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
-						echo '<p class="description">' . __('Paste your test publishable key.', 'rrt_stripe') . '</p>';
+						echo '<input type="text" class="regular-text code" name=tvfh__stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
+						echo '<p class="description">' . __('Paste your test publishable key.', 'tvfh__stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="test_secret">' . __('Test Secret', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="test_secret">' . __('Test Secret', 'tvfh__stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input type="text" class="regular-text code" name="rrt_stripe_settings[test_secret_key]" id="test_secret" value="' . $stripe_options['test_secret_key'] . '">';
-						echo '<p class="description">' . __('Paste your test secret key.', 'rrt_stripe') . '</p>';
+						echo '<input type="text" class="regular-text code" name=tvfh__stripe_settings[test_secret_key]" id="test_secret" value="' . $stripe_options['test_secret_key'] . '">';
+						echo '<p class="description">' . __('Paste your test secret key.', 'tvfh__stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="live_publish">' . __('Live Publishable', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="live_publish">' . __('Live Publishable', 'tvfh__stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input type="text" class="regular-text code" name="rrt_stripe_settings[live_publishable_key]" id="live_publish" value="' . $stripe_options['live_publishable_key'] . '">';
-						echo '<p class="description">' . __('Paste your live publishable key.', 'rrt_stripe') . '</p>';
+						echo '<input type="text" class="regular-text code" name="tvfh_stripe_settings[live_publishable_key]" id="live_publish" value="' . $stripe_options['live_publishable_key'] . '">';
+						echo '<p class="description">' . __('Paste your live publishable key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="live_secret">' . __('Live Secret', 'rrt_stripe') . '</label></th>';
+					echo '<th><label for="live_secret">' . __('Live Secret', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input type="text" class="regular-text code" name="rrt_stripe_settings[live_secret_key]" id="live_secret" value="' . $stripe_options['live_secret_key'] . '">';
-						echo '<p class="description">' . __('Paste your live secret key.', 'rrt_stripe') . '</p>';
+						echo '<input type="text" class="regular-text code" name="tvfh_stripe_settings[live_secret_key]" id="live_secret" value="' . $stripe_options['live_secret_key'] . '">';
+						echo '<p class="description">' . __('Paste your live secret key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 			echo '</table>';
@@ -387,10 +387,49 @@ function rrt_stripe_do_page() {
 	 * Donation Amounts Table
 	 * - Fields for donations amounts to display in table
 	 */
+
+	echo '<div class="wrap">';
+		echo '<h2>' . __('Donation Amounts', 'tvfh_stripe') . '</h2>';
+		echo '<p class="description">Donation Amounts.</p>';
+		echo '<table class="form-table">';
+			echo '<tr>';
+				echo '<th><label for="test_publish">' . __('Donation amount One', 'tvfh_stripe') . '</label></th>';
+				echo '<td>';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_one_value]" id="test_publish" value="' . $stripe_options['donation_amount_one_value'] . '">';
+				echo '</td>';
+			echo '</tr>';
+			echo '<tr>';
+				echo '<th><label for="test_publish">' . __('Donation amount Two', 'tvfh_stripe') . '</label></th>';
+				echo '<td>';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_two_value]" id="test_publish" value="' . $stripe_options['donation_amount_two_value'] . '">';
+				echo '</td>';
+			echo '</tr>';
+			echo '<tr>';
+				echo '<th><label for="test_publish">' . __('Donation amount Three', 'tvfh_stripe') . '</label></th>';
+				echo '<td>';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_three_value]" id="test_publish" value="' . $stripe_options['donation_amount_three_value'] . '">';
+				echo '</td>';
+			echo '</tr>';
+			echo '<tr>';
+				echo '<th><label for="test_publish">' . __('Donation amount Four', 'tvfh_stripe') . '</label></th>';
+				echo '<td>';
+					echo '<input type="number" class="regular-text code" name=tvfh__stripe_settings[donation_amount_four_value]" id="test_publish" value="' . $stripe_options['donation_amount_four_value'] . '">';
+				echo '</td>';
+			echo '</tr>';
+			echo '<tr>';
+				echo '<th><label for="test_publish">' . __('Donation amount Five', 'tvfh__stripe') . '</label></th>';
+				echo '<td>';
+					echo '<input type="number" class="regular-text code" name=tvfh__stripe_settings[donation_amount_five_value]" id="test_publish" value="' . $stripe_options['donation_amount_five_value'] . '">';
+				echo '</td>';
+			echo '</tr>';
+		echo '</table>';
+
+	echo '</div>';
+
 }
 
 // Init plugin options
-function rrt_stripe_init() {
-	register_setting( 'rrt_stripe_options', 'rrt_stripe_settings' );
+function tvfh_stripe_init() {
+	register_setting( 'tvfh_stripe_options', 'tvfh_stripe_settings' );
 }
-add_action('admin_init', 'rrt_stripe_init' );
+add_action('admin_init', 'tvfh_stripe_init' );
