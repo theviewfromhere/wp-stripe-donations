@@ -10,25 +10,31 @@ var donationsComponent = (function() {
 
 	s.ui = {
 		stripeButton: 	document.getElementById('stripeButton'),
-		input_amount: 	document.querySelector('input[name="donation_amount"]:checked'),
+		input_amount: 	document.querySelectorAll('input[name="donation_amount"]'),
 		amount_other: 	document.getElementById('otherAmount'),
 		monthly_label: 	document.querySelector('.donate_monthly label')
 	};
 
 	s.getDonationAmount = function(){
 		var amount = false;
+		console.log('get_donation_amount');
 
-		if ( s.ui.input_amount !== null) {
+		Array.prototype.forEach.call( s.ui.input_amount, function(el) {
+			console.log(el);
+			if ( el.checked ) {
+				console.log(el);
 
-			if ( s.ui.input_amount.value !== 'other') {
-				amount = s.ui.input_amount.value * 100;
+				if ( el.value !== 'other') {
+					amount = el.value * 100;
+				}
+
+				if ( el.value === 'other') {
+					amount = s.ui.amount_other.value * 100;
+				}
+
+				return amount;
 			}
-
-			if ( s.ui.input_amount.value === 'other') {
-				amount = s.ui.amount_other.value * 100;
-			}
-
-		}
+		});
 
 		return amount;
 	};
@@ -75,23 +81,8 @@ var donationsComponent = (function() {
 				// change donation button label for monthly donations
 				var buttonLabel = 'Donate';
 				if ( document.getElementById('donate_monthly').checked === true ) {
-
 					buttonLabel = 'Donate Monthly';
 				}
-
-				var amount = s.getDonationAmount();
-				if (amount>50) {
-					// Open Checkout with further options:
-					handler.open({
-						name: 'Charitable Donation',
-						description: 'The Murle Education Foundation',
-						amount: amount,
-						currency: 'AUD',
-						billingAddress: true,
-						panelLabel: buttonLabel
-					});
-				}
-
 
 				var amount = s.getDonationAmount();
 				var amountDisplay = (amount/100);
@@ -107,6 +98,7 @@ var donationsComponent = (function() {
 						panelLabel: 'Donate'
 					});
 				}
+				console.log(amount);
 			});
 		}
 

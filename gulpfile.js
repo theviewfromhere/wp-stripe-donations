@@ -47,7 +47,7 @@ gulp.task('js', function (cb) {
         // removeLogging({ namespace: ['console', 'window.console'] }),
         jshint({esversion: 6}),
         jshint.reporter('default', { verbose: true }),
-        // minify(),
+        minify(),
         rename({ suffix:'.min' }),
         gulp.dest(config.destination + './')
     ], cb);
