@@ -5,13 +5,14 @@
 @import "variables";
 
 #donate {
+	font-size: 1rem;
 	background-color: color(white);
 	padding: ($hgrid * 3) 0;
 	color: color(primary);
 
 	.terms {
-		margin-bottom: $hgrid*2;
-		font-size: .85rem;
+		margin: $hgrid 0 ($hgrid * 2);
+		font-size: 1em;
 		opacity: .8;
 	}
 
@@ -41,6 +42,7 @@
 
 				input[type="text"],
 				input[type="number"] {
+					font-size: 1em;
 					background-color: rgba( lighten( color(secondary) , 5%), .4);
 					transform: translate(10%, -50%);
 				}
@@ -55,12 +57,13 @@
 			margin-right: $hgrid;
 
 			&.donate_monthly {
-				width: calc( 100% - 2.125rem);
+				width: 100%;
 				margin-bottom: 0;
+				margin-right: 0;
 
 				label {
 					padding: ($vgrid / 2) ($hgrid / 2);
-					font-size: 1rem;
+					font-size: 1em;
 
 					span {
 						&:before {
@@ -93,7 +96,7 @@
 			color: color(primary);
 			cursor: pointer;
 			display: block;
-			font-size: 2rem;
+			font-size: 1.625em;
 			min-height: 100%;
 			padding: 1em 1em;
 			font-weight: 200;
@@ -127,7 +130,7 @@
 			border-radius: 0;
 			box-shadow: none;
 			color: color(primary);
-			font-size: 1.75rem;
+			font-size: 1.75em;
 			font-weight: 300;
 			left: 0;
 			line-height: 1;
@@ -173,6 +176,27 @@
 
 	#donateStripe {
 		width: 100%;
+	}
+
+	button {
+		font-size: 1.625em;
+		appearance: none;
+		color: color(white);
+		letter-spacing: 1px;
+		font-weight: 400;
+		padding: ($vgrid / 2) ($hgrid / 2);
+		border: none;
+		background-image: none;
+		box-shadow: none;
+		border-radius: 3px;
+		transition: all .4s;
+		background-color: color(primary);
+		width: auto;
+
+		&:hover {
+			cursor: pointer;
+			opacity: .8;
+		}
 	}
 
 }

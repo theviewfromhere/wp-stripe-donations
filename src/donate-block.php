@@ -44,7 +44,7 @@ function tvfh_donation_block( $atts ){
 	$output .= '<input name="donate_monthly_option" type="checkbox" id="donate_monthly"><label for="donate_monthly"><span>I want to donate this amount monthly *</span></label>';
 	$output .= '</div>';
 	$output .= '<span class="terms">';
-	$output .= '<p>* By checking this box you agree to be charged the amount selected on a monthly basis, this can be canceld at any time</p>';
+	$output .= '<small class="terms">* By checking this box you agree to be charged the amount selected on a monthly basis, this can be canceld at any time</small>';
 	$output .= '</span>';
 	$output .= '<form id="donateStripe" method="post" action="' . esc_url( admin_url('admin-post.php') ) . '">';
 	$output .= '<input type="hidden" name="action" value="stripe_charge">';
