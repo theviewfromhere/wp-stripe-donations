@@ -5,9 +5,9 @@
 @import "variables";
 
 #donate {
-	background-color: color(primary);
+	background-color: color(white);
 	padding: ($hgrid * 3) 0;
-	color: color(white);
+	color: color(primary);
 
 	.terms {
 		margin-bottom: $hgrid*2;
@@ -28,6 +28,23 @@
 		input[type="radio"] {
 			clip: rect(1px, 1px, 1px, 1px);
 			position: absolute !important;
+
+			&:checked+label{
+				background-color: color(secondary);
+				color: color(white);
+				border-color: lighten( color(primary), 15%);
+				font-weight: 400;
+
+				span {
+					opacity: 0;
+				}
+
+				input[type="text"],
+				input[type="number"] {
+					background-color: rgba( lighten( color(secondary) , 5%), .4);
+					transform: translate(10%, -50%);
+				}
+			}
 		}
 
 		div {
@@ -54,8 +71,7 @@
 							width: 1em;
 							height: 1em;
 							margin-right: $vgrid;
-							//background-color: $white;
-							border: 2px solid color(white);
+							border: 2px solid color(primary);
 						}
 					}
 				}
@@ -74,7 +90,7 @@
 		label {
 			border: 3px solid;
 			background-color: transparent;
-			color: color(white);
+			color: color(primary);
 			cursor: pointer;
 			display: block;
 			font-size: 2rem;
@@ -84,10 +100,23 @@
 			position: relative;
 			text-align: center;
 			width: 100%;
+			transition: background-color .3s ease;
 
 			&:hover {
-				background-color: lighten( color(primary), 5%);
+				background-color: lighten( color(secondary), 5%);
 			}
+
+			&.amount-other {
+
+				span {
+					color: color(primary);
+					text-align: center;
+					width: 100%;
+					opacity: 1;
+					transition: opacity .3s;
+				}
+			}
+
 		}
 
 		input[type="text"],
@@ -97,7 +126,7 @@
 			border: none;
 			border-radius: 0;
 			box-shadow: none;
-			color: color(white);
+			color: color(primary);
 			font-size: 1.75rem;
 			font-weight: 300;
 			left: 0;
@@ -109,8 +138,7 @@
 			text-align: center;
 			top: 50%;
 			transform: translate(200%, -50%);
-			transition: transform .5s ease;
-			width: 80%;
+			transition: transform .3s ease;
 
 			&::-webkit-input-placeholder {
 				color: color(white);
@@ -129,38 +157,15 @@
 			}
 		}
 
-		label.amount-other {
-
-			span {
-				color: color(white);
-				text-align: center;
-				width: 100%;
-				opacity: 1;
-				transition: opacity .3s;
-			}
-		}
-
 		input[type="checkbox"]:checked{
 			+label {
 				background-color: color(secondary);
+				color: color(white);
+				border-color: lighten( color(primary), 15%);
 
 				span:before {
 					background-color: color(white);
 				}
-			}
-		}
-
-		input[type="radio"]:checked+label{
-			background-color: color(secondary);
-
-			span {
-				opacity: 0;
-			}
-
-			input[type="text"],
-			input[type="number"] {
-				background-color: rgba( lighten( color(secondary) , 5%), .4);
-				transform: translate(10%, -50%);
 			}
 		}
 
