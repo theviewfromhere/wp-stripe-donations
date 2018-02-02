@@ -20,6 +20,7 @@ function tvfh_stripe_do_page() {
 
 	/* Stripe Options */
 	global $stripe_options;
+	global $donations_options;
 	$woo_managed = false;
 
 	/* @var $currs {currencies list} */
@@ -186,6 +187,7 @@ function tvfh_stripe_do_page() {
 		array('zar', 'South African rand, ZAR'),
 		array('zmw', 'Zambian kwacha, ZMW'),
 	);
+	echo '<form method="post" action="options.php">';
 
 	/**
 	 * Check For WooComm
@@ -269,7 +271,7 @@ function tvfh_stripe_do_page() {
 			echo '<h3>' . __('API Keys', 'tvfh_stripe') . '</h3>';
 			echo '<table class="form-table">';
 				echo '<tr>';
-					echo '<th><label for="test_publish">' . __('Test Publishable', 'tvfh__stripe') . '</label></th>';
+					echo '<th><label for="test_publish">' . __('Test Publishable', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
 						echo '<input readonly type="text" class="regular-text code" name="tvfh_stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
 						echo '<p class="description">' . __('Paste your test publishable key.', 'tvfh_stripe') . '</p>';
@@ -309,6 +311,7 @@ function tvfh_stripe_do_page() {
 			echo '<h2>' . __('Stripe Donations', 'tvfh_stripe') . '</h2>';
 
 			settings_fields('tvfh_stripe_options');
+			settings_fields('tvfh_donation_options');
 
 			echo '<table class="form-table">';
 				echo '<tr>';
@@ -324,7 +327,7 @@ function tvfh_stripe_do_page() {
 				echo '<tr>';
 					echo '<th><label for="currency">' . __('Currency', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<select name=tvfh__stripe_settings[currency]" id="currency">';
+						echo '<select name=tvfh_stripe_settings[currency]" id="currency">';
 
 						foreach ($currs as $curr) :
 							if ($stripe_options['currency'] === $curr[0]) {
@@ -341,24 +344,24 @@ function tvfh_stripe_do_page() {
 			echo '</table>';
 			echo '<hr>';
 
-			echo '<h3>' . __('API Keys', 'tvfh__stripe') . '</h3>';
+			echo '<h3>' . __('API Keys', 'tvfh_stripe') . '</h3>';
 			echo '<table class="form-table">';
 				echo '<tr>';
-					echo '<th><label for="test_publish">' . __('Test Publishable', 'tvfh__stripe') . '</label></th>';
+					echo '<th><label for="test_publish">' . __('Test Publishable', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input type="text" class="regular-text code" name=tvfh__stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
-						echo '<p class="description">' . __('Paste your test publishable key.', 'tvfh__stripe') . '</p>';
+						echo '<input type="text" class="regular-text code" name="tvfh_stripe_settings[test_publishable_key]" id="test_publish" value="' . $stripe_options['test_publishable_key'] . '">';
+						echo '<p class="description">' . __('Paste your test publishable key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="test_secret">' . __('Test Secret', 'tvfh__stripe') . '</label></th>';
+					echo '<th><label for="test_secret">' . __('Test Secret', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
-						echo '<input type="text" class="regular-text code" name=tvfh__stripe_settings[test_secret_key]" id="test_secret" value="' . $stripe_options['test_secret_key'] . '">';
-						echo '<p class="description">' . __('Paste your test secret key.', 'tvfh__stripe') . '</p>';
+						echo '<input type="text" class="regular-text code" name="tvfh_stripe_settings[test_secret_key]" id="test_secret" value="' . $stripe_options['test_secret_key'] . '">';
+						echo '<p class="description">' . __('Paste your test secret key.', 'tvfh_stripe') . '</p>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<th><label for="live_publish">' . __('Live Publishable', 'tvfh__stripe') . '</label></th>';
+					echo '<th><label for="live_publish">' . __('Live Publishable', 'tvfh_stripe') . '</label></th>';
 					echo '<td>';
 						echo '<input type="text" class="regular-text code" name="tvfh_stripe_settings[live_publishable_key]" id="live_publish" value="' . $stripe_options['live_publishable_key'] . '">';
 						echo '<p class="description">' . __('Paste your live publishable key.', 'tvfh_stripe') . '</p>';
@@ -390,45 +393,45 @@ function tvfh_stripe_do_page() {
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount One', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_one_value]" id="test_publish" value="' . $stripe_options['donation_amount_one_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_one_value]" id="test_publish" value="' . $donations_options['donation_amount_one_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Two', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_two_value]" id="test_publish" value="' . $stripe_options['donation_amount_two_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_two_value]" id="test_publish" value="' . $donations_options['donation_amount_two_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Three', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_three_value]" id="test_publish" value="' . $stripe_options['donation_amount_three_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_three_value]" id="test_publish" value="' . $donations_options['donation_amount_three_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Four', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name=tvfh__stripe_settings[donation_amount_four_value]" id="test_publish" value="' . $stripe_options['donation_amount_four_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_four_value]" id="test_publish" value="' . $donations_options['donation_amount_four_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
-				echo '<th><label for="test_publish">' . __('Donation amount Five', 'tvfh__stripe') . '</label></th>';
+				echo '<th><label for="test_publish">' . __('Donation amount Five', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name=tvfh__stripe_settings[donation_amount_five_value]" id="test_publish" value="' . $stripe_options['donation_amount_five_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_five_value]" id="test_publish" value="' . $donations_options['donation_amount_five_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 		echo '</table>';
 
 		echo '<p class="submit"><input type="submit" class="button-primary" value="' . __('Save Changes') . '"></p>';
 
-		echo '</form>';
-
-	echo '</div>';
+		echo '</div>';
+	echo '</form>';
 
 }
 
 // Init plugin options
 function tvfh_stripe_init() {
 	register_setting( 'tvfh_stripe_options', 'tvfh_stripe_settings' );
+	register_setting( 'tvfh_donation_options', 'tvfh_donation_settings' );
 }
 add_action('admin_init', 'tvfh_stripe_init' );

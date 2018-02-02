@@ -1,4 +1,9 @@
 <?php
+/**
+ * Enqueue Scripts & Stylesheets
+ * 
+ * @version 0.02
+ */
 
 function tvfh_load_stripe_scripts() {
 
@@ -18,7 +23,7 @@ function tvfh_load_stripe_scripts() {
 	}
 
 	wp_enqueue_script( 'stripe-checkout', '//checkout.stripe.com/checkout.js', array(), '1.0', true);
-	wp_enqueue_script('stripe-processing', STRIPE_BASE_URL . 'includes/js/process.js', array('stripe-checkout'), '1.0', true);
+	wp_enqueue_script('stripe-processing', STRIPE_BASE_URL . 'dist/js/process.min.js', array('stripe-checkout'), '1.0', true);
 	wp_localize_script('stripe-processing', 'stripe_vars', array(
 			'publishable_key' => $publishable,
 			'currency' => $currency,
@@ -26,3 +31,9 @@ function tvfh_load_stripe_scripts() {
 	);
 }
 add_action('wp_enqueue_scripts', 'tvfh_load_stripe_scripts');
+
+
+function tvfh_donation_enqueue_styles() {
+	wp_enqueue_style( 'tvfh-donations-styles', STRIPE_BASE_URL . 'dist/scss/styles.min.css', array(), '0.02', 'all' );
+}
+add_action( 'wp_enqueue_scripts', 'tvfh_donation_enqueue_styles' );

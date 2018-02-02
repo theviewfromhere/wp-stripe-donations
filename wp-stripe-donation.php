@@ -36,13 +36,15 @@ if(!defined('STRIPE_BASE_DIR')) {
 }
 
 $stripe_options = get_option('tvfh_stripe_settings');
-$donation_settings = get_option('donation_settings');
+$donations_options = get_option('tvfh_donation_settings');
 
 if(is_admin()) {
 	// load admin includes
-	include(STRIPE_BASE_DIR . '/includes/settings.php');
+	include(STRIPE_BASE_DIR . '/dist/settings.php');
 } else {
 	// load front-end includes
-	include(STRIPE_BASE_DIR . '/includes/scripts.php');
-	include(STRIPE_BASE_DIR . '/includes/process-payment.php');
+	include(STRIPE_BASE_DIR . '/dist/scripts.php');
+	include(STRIPE_BASE_DIR . '/dist/process-payment.php');
 }
+
+@include(STRIPE_BASE_DIR .'/dist/donate-block.php');

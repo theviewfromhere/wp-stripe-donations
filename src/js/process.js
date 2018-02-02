@@ -4,7 +4,7 @@
  *
  * @version 0.02
  */
-var donationsComponent = function() {
+var donationsComponent = (function() {
 
 	var s = {};
 
@@ -43,6 +43,8 @@ var donationsComponent = function() {
 	};
 
 	s.init = (function() {
+
+		console.log('initated');
 
 		var handler = StripeCheckout.configure({
 			key: stripe_vars.publishable_key,
@@ -115,8 +117,6 @@ var donationsComponent = function() {
 	});
 
 	return s;
-};
-
-var
+}());
 
 window.addEventListener('load', donationsComponent.init(), false);

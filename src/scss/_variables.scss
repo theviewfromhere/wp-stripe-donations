@@ -1,0 +1,45 @@
+// ===================================================================================
+// ================ VARIABLES & MIXINS ===============================================
+// ===================================================================================
+
+/* ====== Colors ============================== */
+$brand-colors: (
+		primary:        #0D4459,
+		secondary:      #00A69C,
+		tirtary:        #F4F2AD,
+		white:          #FFFFFF,
+) !default;
+
+/* ====== Breakpoints & Visual Grid =========== */
+$breakpoints: (
+		sm: 540px,
+		md: 768px,
+		tb: 860px,
+		lg: 1024px,
+		xl: 1140px,
+		xxl: 2000px,
+) !default;
+$vgrid: 1em;
+$hgrid: 1.5em;
+
+
+/* ====== Mixins ============================== */
+
+/* retrieve color from $colors map ie. `color(primary, base)` */
+@function color($color-name) {
+	@return map-get( $brand-colors, $color-name );
+}
+
+/* Return Media Breakpoints */
+@mixin media-breakpoint($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+			@content;
+		}
+	}
+
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+	}
+}

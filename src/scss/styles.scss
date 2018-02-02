@@ -1,0 +1,173 @@
+// ===================================================================================
+// ================ DONATION PLUGIN STYLES ===========================================
+// ===================================================================================
+
+@import "variables";
+
+#donate {
+	background-color: color(primary);
+	padding: ($hgrid * 3) 0;
+	color: color(white);
+
+	.terms {
+		margin-bottom: $hgrid*2;
+		font-size: .85rem;
+		opacity: .8;
+	}
+
+	.donation-amounts {
+		align-items: stretch;
+		border: 0;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		overflow: hidden;
+		padding: 0;
+		width: 100%;
+
+		input[type="radio"] {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute !important;
+		}
+
+		div {
+			margin-bottom: $hgrid;
+			overflow: hidden;
+			position: relative;
+			width: calc(50% - #{$hgrid / 2});
+			margin-right: $hgrid;
+
+			&.donate_monthly {
+				width: calc( 100% - 2.125rem);
+				margin-bottom: 0;
+
+				label {
+					padding: ($vgrid / 2) ($hgrid / 2);
+					font-size: 1rem;
+
+					span {
+						&:before {
+							position: relative;
+							top: 2px;
+							display: inline-block;
+							content: ' ';
+							width: 1em;
+							height: 1em;
+							margin-right: $vgrid;
+							//background-color: $white;
+							border: 2px solid color(white);
+						}
+					}
+				}
+
+				input {
+					clip: rect(1px, 1px, 1px, 1px);
+					position: absolute !important;
+				}
+			}
+
+			&:nth-of-type(even) {
+				margin-right: 0;
+			}
+		}
+
+		label {
+			border: 3px solid;
+			background-color: transparent;
+			color: color(white);
+			cursor: pointer;
+			display: block;
+			font-size: 2rem;
+			min-height: 100%;
+			padding: 1em 1em;
+			font-weight: 200;
+			position: relative;
+			text-align: center;
+			width: 100%;
+
+			&:hover {
+				background-color: lighten( color(primary), 5%);
+			}
+		}
+
+		input[type="text"],
+		input[type="number"] {
+			appearance: none;
+			background-color: transparent;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			color: color(white);
+			font-size: 1.75rem;
+			font-weight: 300;
+			left: 0;
+			line-height: 1;
+			margin: 0;
+			position: absolute;
+			outline: none;
+			padding: .5em 0 .25em;
+			text-align: center;
+			top: 50%;
+			transform: translate(200%, -50%);
+			transition: transform .5s ease;
+			width: 80%;
+
+			&::-webkit-input-placeholder {
+				color: color(white);
+			}
+
+			&::-ms-input-placeholder {
+				color: color(white);
+			}
+
+			&::-moz-placeholder {
+				color: color(white);
+			}
+
+			&:-moz-placeholder {
+				color: color(white);
+			}
+		}
+
+		label.amount-other {
+
+			span {
+				color: color(white);
+				text-align: center;
+				width: 100%;
+				opacity: 1;
+				transition: opacity .3s;
+			}
+		}
+
+		input[type="checkbox"]:checked{
+			+label {
+				background-color: color(secondary);
+
+				span:before {
+					background-color: color(white);
+				}
+			}
+		}
+
+		input[type="radio"]:checked+label{
+			background-color: color(secondary);
+
+			span {
+				opacity: 0;
+			}
+
+			input[type="text"],
+			input[type="number"] {
+				background-color: rgba( lighten( color(secondary) , 5%), .4);
+				transform: translate(10%, -50%);
+			}
+		}
+
+	}
+
+	#donateStripe {
+		width: 100%;
+	}
+
+}

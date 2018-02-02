@@ -1,0 +1,40 @@
+{
+  "name": "wordpress-stripe-donations",
+  "version": "0.0.02",
+  "description": "A plugin for adding a donations widget powered by stripe.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "clean"    : "gulp clean",
+    "build"    : "gulp build",
+    "watch"    : "gulp watch",
+    "run build": "clean build",
+    "run watch": "clean watch"
+  },
+  "keywords": [
+    "wordpress",
+    "gulp",
+    "stripe",
+    "donations"
+  ],
+  "author": "TVFH",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-remove-logging": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.5",
+    "node-bourbon": "^4.2.8",
+    "pump": "^1.0.2",
+    "uglify-es": "^3.0.20"
+  }
+}
