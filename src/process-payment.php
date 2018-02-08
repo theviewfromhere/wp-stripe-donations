@@ -104,7 +104,7 @@ function tvfh_stripe_process_payment() {
 				 */
 				try {
 					$plan = \Stripe\Plan::create(array(
-						"name" => $description ." | $" . $amount / 100 ."Plan",
+						"name" => $description ." | $" . $amount / 100 ." Plan",
 						"id" => $amount / 100 . "subscription",
 						"interval" => "month",
 						"currency" => $currency,
