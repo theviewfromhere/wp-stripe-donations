@@ -11,7 +11,7 @@
  * @return string
  */
 
-global $donations_options;
+global $stripe_options;
 
 function tvfh_donation_block( $atts ){
 
@@ -28,7 +28,7 @@ function tvfh_donation_block( $atts ){
 	$output  = '<div id="donate">';
 	$output .= '<div class="donation-amounts">';
 	foreach ( $amounts as $amount ) :
-		$val = get_option('tvfh_donation_settings')[$amount];
+		$val = get_option('tvfh_stripe_settings')[$amount];
 		if ( isset( $val ) ) :
 			$output .=  '<div>';
 			$output .=  '<input name="donation_amount" type="radio" id="donate_' . $val . '" value="' . $val . '">';
@@ -44,7 +44,7 @@ function tvfh_donation_block( $atts ){
 	$output .= '<input name="donate_monthly_option" type="checkbox" id="donate_monthly"><label for="donate_monthly"><span>I want to donate this amount monthly *</span></label>';
 	$output .= '</div>';
 	$output .= '<span class="terms">';
-	$output .= '<small class="terms">* By checking this box you agree to be charged the amount selected on a monthly basis, this can be canceld at any time</small>';
+	$output .= '<small class="terms">* By checking this box you agree to be charged the amount selected on a monthly basis, this can be canceled at any time</small>';
 	$output .= '</span>';
 	$output .= '<form id="donateStripe" method="post" action="' . esc_url( admin_url('admin-post.php') ) . '">';
 	$output .= '<input type="hidden" name="action" value="stripe_charge">';

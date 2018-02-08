@@ -4,6 +4,25 @@
  *
  * @version 0.02
  */
+
+/**
+ * Set Cookie
+ * @param string name
+ * @param string value
+ * @param number days (expirey)
+ */
+var setCookie = function( name, value, days ) {
+	var expires = "";
+
+	if ( days ) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		expires = "; expires=" + date.toGMTString();
+	}
+
+	document.cookie = name + "=" + value + expires + "; path=/";
+};
+
 var donationsComponent = (function() {
 
 	var s = {};
@@ -12,17 +31,17 @@ var donationsComponent = (function() {
 		stripeButton: 	document.getElementById('stripeButton'),
 		input_amount: 	document.querySelectorAll('input[name="donation_amount"]'),
 		amount_other: 	document.getElementById('otherAmount'),
-		monthly_label: 	document.querySelector('.donate_monthly label')
+		monthly_label: 	document.querySelector('.donate_monthly label'),
+		elToken:		document.getElementById('stripeToken'),
+		elAmount:		document.getElementById('stripeAmount'),
+		stripeForm:		document.getElementById('donateStripe')
 	};
 
 	s.getDonationAmount = function(){
 		var amount = false;
-		console.log('get_donation_amount');
 
 		Array.prototype.forEach.call( s.ui.input_amount, function(el) {
-			console.log(el);
 			if ( el.checked ) {
-				console.log(el);
 
 				if ( el.value !== 'other') {
 					amount = el.value * 100;
@@ -50,21 +69,17 @@ var donationsComponent = (function() {
 
 	s.init = (function() {
 
-		console.log('initated');
-
 		var handler = StripeCheckout.configure({
 			key: stripe_vars.publishable_key,
 			locale: 'auto',
 			token: function(token) {
+				console.log(token);
 				// You can access the token ID with `token.id`.
 				// Get the token ID to your server-side code for use.
-				var stripeForm = document.getElementById('donateStripe');
-				var elToken = document.getElementById('stripeToken');
-				var elAmount = document.getElementById('stripeAmount');
 				var amount = s.getDonationAmount();
-				elToken.setAttribute('value', token.id);
-				elAmount.setAttribute('value', amount);
-				stripeForm.submit();
+				s.ui.elToken.value = token.id;
+				s.ui.elAmount.value = amount;
+				s.ui.stripeForm.submit();
 			}
 		});
 
@@ -76,7 +91,6 @@ var donationsComponent = (function() {
 			s.ui.stripeButton.removeAttribute('disabled', false);
 			s.ui.stripeButton.addEventListener('click', function(e) {
 				e.preventDefault();
-
 
 				// change donation button label for monthly donations
 				var buttonLabel = 'Donate';
@@ -95,10 +109,9 @@ var donationsComponent = (function() {
 						amount: amount,
 						currency: stripe_vars.currency,
 						billingAddress: true,
-						panelLabel: 'Donate'
+						panelLabel: buttonLabel
 					});
 				}
-				console.log(amount);
 			});
 		}
 

@@ -20,7 +20,6 @@ function tvfh_stripe_do_page() {
 
 	/* Stripe Options */
 	global $stripe_options;
-	global $donations_options;
 	$woo_managed = false;
 
 	/* @var $currs {currencies list} */
@@ -311,7 +310,6 @@ function tvfh_stripe_do_page() {
 			echo '<h2>' . __('Stripe Donations', 'tvfh_stripe') . '</h2>';
 
 			settings_fields('tvfh_stripe_options');
-			settings_fields('tvfh_donation_options');
 
 			echo '<table class="form-table">';
 				echo '<tr>';
@@ -393,31 +391,31 @@ function tvfh_stripe_do_page() {
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount One', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_one_value]" id="test_publish" value="' . $donations_options['donation_amount_one_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_one_value]" id="test_publish" value="' . $stripe_options['donation_amount_one_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Two', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_two_value]" id="test_publish" value="' . $donations_options['donation_amount_two_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_two_value]" id="test_publish" value="' . $stripe_options['donation_amount_two_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Three', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_three_value]" id="test_publish" value="' . $donations_options['donation_amount_three_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_three_value]" id="test_publish" value="' . $stripe_options['donation_amount_three_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Four', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_four_value]" id="test_publish" value="' . $donations_options['donation_amount_four_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_four_value]" id="test_publish" value="' . $stripe_options['donation_amount_four_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 			echo '<tr>';
 				echo '<th><label for="test_publish">' . __('Donation amount Five', 'tvfh_stripe') . '</label></th>';
 				echo '<td>';
-					echo '<input type="number" class="regular-text code" name="tvfh_donation_settings[donation_amount_five_value]" id="test_publish" value="' . $donations_options['donation_amount_five_value'] . '">';
+					echo '<input type="number" class="regular-text code" name="tvfh_stripe_settings[donation_amount_five_value]" id="test_publish" value="' . $stripe_options['donation_amount_five_value'] . '">';
 				echo '</td>';
 			echo '</tr>';
 		echo '</table>';
@@ -432,6 +430,5 @@ function tvfh_stripe_do_page() {
 // Init plugin options
 function tvfh_stripe_init() {
 	register_setting( 'tvfh_stripe_options', 'tvfh_stripe_settings' );
-	register_setting( 'tvfh_donation_options', 'tvfh_donation_settings' );
 }
 add_action('admin_init', 'tvfh_stripe_init' );

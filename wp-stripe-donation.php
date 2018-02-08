@@ -28,23 +28,21 @@
 
 if ( !defined( 'ABSPATH' ) ) exit;
 
-if(!defined('STRIPE_BASE_URL')) {
-	define('STRIPE_BASE_URL', plugin_dir_url(__FILE__));
+if( !defined('TVFH_STRIPE_BASE_URL') ) {
+	define('TVFH_STRIPE_BASE_URL', plugin_dir_url(__FILE__));
 }
-if(!defined('STRIPE_BASE_DIR')) {
-	define('STRIPE_BASE_DIR', dirname(__FILE__));
+if( !defined('TVFH_STRIPE_BASE_DIR') ) {
+	define('TVFH_STRIPE_BASE_DIR', dirname(__FILE__));
 }
 
 $stripe_options = get_option('tvfh_stripe_settings');
-$donations_options = get_option('tvfh_donation_settings');
 
-if(is_admin()) {
+if( is_admin() ) {
 	// load admin includes
-	include(STRIPE_BASE_DIR . '/dist/settings.php');
+	include(TVFH_STRIPE_BASE_DIR . '/dist/settings.php');
+	include(TVFH_STRIPE_BASE_DIR . '/dist/process-payment.php');
 } else {
 	// load front-end includes
-	include(STRIPE_BASE_DIR . '/dist/scripts.php');
-	include(STRIPE_BASE_DIR . '/dist/process-payment.php');
+	include(TVFH_STRIPE_BASE_DIR . '/dist/scripts.php');
+	include(TVFH_STRIPE_BASE_DIR .'/dist/donate-block.php');
 }
-
-@include(STRIPE_BASE_DIR .'/dist/donate-block.php');
