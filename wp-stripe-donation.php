@@ -35,7 +35,16 @@ if( !defined('TVFH_STRIPE_BASE_DIR') ) {
 	define('TVFH_STRIPE_BASE_DIR', dirname(__FILE__));
 }
 
-$stripe_options = get_option('tvfh_stripe_settings');
+/**
+ * Define Stripe Options
+ * @var $stripe_options
+ */
+if ( is_multisite() ) :
+	$id = get_current_blog_id();
+	$stripe_options = get_blog_option( $id, 'rrt_stripe_settings');
+else :
+	$stripe_options = get_option('rrt_stripe_settings');
+endif;
 
 if( is_admin() ) {
 	// load admin includes
