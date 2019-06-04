@@ -28,10 +28,10 @@
     "gulp-remove-logging": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "jshint": "^2.9.5",
+    "jshint": "^2.10.2",
     "node-bourbon": "^4.2.8",
     "pump": "^1.0.2",
     "uglify-es": "^3.0.20"
