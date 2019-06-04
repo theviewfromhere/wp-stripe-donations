@@ -3,7 +3,7 @@ var gulp				= require('gulp'),
     util                = require('gulp-util'),
     sass            	= require('gulp-sass'),
     autoprefixer        = require('gulp-autoprefixer'),
-    minifycss           = require('gulp-minify-css'),
+    cleanCSS            = require('gulp-clean-css'),
     jshint 			    = require('gulp-jshint'),
     rename			    = require('gulp-rename'),
     plumber			    = require('gulp-plumber'),
@@ -33,7 +33,7 @@ gulp.task('sass', function(cb) {
 			includePaths: require('node-bourbon').includePaths
 		}),
 		autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'),
-		minifycss(),
+		cleanCSS({compatibility: 'ie8'}),
 		rename({ suffix:'.min' }),
 		gulp.dest(config.destination + './')
     ], cb);
@@ -60,17 +60,21 @@ gulp.task('moveFiles', function(cb) {
 	], cb)
 }) ;
 
-gulp.task('clean', function () {
-	return gulp.src(config.destination, {read: false})
-		.pipe(clean());
+gulp.task('clean', function (cb) {
+    pump([
+        gulp.src(config.destination, {read: false}),
+        clean()
+    ], cb)
 });
 
 // watch & compile all files > build
-gulp.task('watch', function() {
-	gulp.watch('src/**/*', ['build']);
+gulp.task('watch', function(cb) {
+	gulp.watch('src/**/*', gulp.series('build'));
 });
 
 // build > js/css/html/images
-gulp.task('build', ['js', 'sass', 'moveFiles'], function() { });
+gulp.task('build', gulp.series('js', 'sass', 'moveFiles', function(cb) {
+    cb();
+}));
 
-gulp.task('default', ['build']);
+gulp.task('default', gulp.series('build'));

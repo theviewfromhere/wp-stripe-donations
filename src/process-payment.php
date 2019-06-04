@@ -1,4 +1,10 @@
 <?php
+/**
+ * Stripe Donation Form Action
+ * - stripe action for submitting transaction of Ajax
+ *
+ * @version 0.02
+ */
 
 function tvfh_stripe_process_payment() {
 
